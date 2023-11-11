@@ -1,9 +1,9 @@
 
 ############################# Análise de Base de Comportamento Web com Inteligência Artifical - Classificador KNN ############################
 # ------------------------------------------------------
-# Renan Alcoléa de Souza (FACENS)	       RA: 142591 
-# Patrick 		         (IPT)             RA: 171892 
-# Valdeclébio Farrapo    (UFC)             RA: 
+# Renan Alcoléa de Souza        (FACENS)   RA: 142591 
+# Patrick Escórcia Taraborelli  (IPT)      RA: 43404
+# Valdeclébio Farrapo Costa     (UFC)      RA: XXXXX 
 # ------------------------------------------------------
 
 # Bibliotecas para Ler/manipular/ver nossos dados
@@ -67,23 +67,22 @@ x = np.array(df_dummy)
 
 
 ###############################################################################################################
-def masstest(k,x,y):
+def masstest(k,x,y):   
+            
+    x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size= 0.2, random_state=0)       
     
-    for i in range(1,k+1):         
+    #Normalização dos atributos para que obtenham o mesmo peso.
+    sc_x = StandardScaler()
+    x_train = sc_x.fit_transform(x_train)
+    x_test = sc_x.fit_transform(x_test)   
 
-        x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size= 0.2, random_state=888)       
-       
-        #Normalização dos atributos para que obtenham o mesmo peso.
-        sc_x = StandardScaler()
-        x_train = sc_x.fit_transform(x_train)
-        x_test = sc_x.fit_transform(x_test)        
+    for i in range(1,k+1):      
        
         classificador = neighbors.KNeighborsClassifier(n_neighbors = i, metric='euclidean')        
         classificador.fit(x_train,y_train)
         accuracy = classificador.score(x_test,y_test)
-        print('A Por centagem de acerto do KNN com K valendo' + ' ' + str(i) + ' ' + 'é de: + ' + str(accuracy) + ' ' + '%')      
+        print('A Por centagem de acerto do KNN com K valendo' + ' ' + str(i) + ' ' + 'é de: + ' + str((accuracy)*100) + ' ' + '%')      
 ##############################################################################################################
-
 
 ##############################################################################################################
 def predicao(k, sample):    
@@ -102,7 +101,7 @@ def predicao(k, sample):
 sample = np.array([0.8261,0.6742,300.0935,0.7273,0.0791,0.8793,0.9563,
 0.3193,0.9997,0.7164,0.0179,0.4493,0.5410,0.6669,0.3183,0.9055,0.1363,
 0.4749,100.5502,0.9028,0.9632,0.2976,0.5401,0.7857,0.3345,0.6991,
-0.0935,0.7307,0.0692,0.8698,0.3257,0.2074,0.9964,0.5653,0.2081,0.0934,
+0.0935,0.7307,0.0692,0.8698,500,0.2074,0.9964,0.5653,0.2081,0.0934,
 0.5149,0.9674,0.1848,0.0919,0.4197,0.7634,500.3038,0.2860,0.4441,
 800.7194,0.0909,0.8340,0.5949,0.0674,0.4301,0.5339,0.4956,0.0999,
 0.8964,0.9961,0.7069,0.7377,0.4731,0.8692,0.4475,200.0894,0.9901,
@@ -115,6 +114,7 @@ sample = np.array([0.8261,0.6742,300.0935,0.7273,0.0791,0.8793,0.9563,
 0.8286,0.8367,0.8115,0.4329,0.0473,18])
 
 masstest(k,x,y)
+
 #predicao(k,sample)
 
 
