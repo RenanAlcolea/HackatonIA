@@ -1,0 +1,27 @@
+CHANGED
+
+x_test = sc_x.fit_transform(x_test) 
+x_test = sc_x.transform(x_test) 
+-------------------------------------------------------
+(stratify=y)
+------------------------------------------------
+
+NEW 
+
+Testar outros métodos (SVM, random forest, logistic regression)
+class sklearn.model_selection.StratifiedKFold(n_splits=5, *, shuffle=False, random_state=None)[source]
+true positive rate
+false positive rate
+
+
+SMOTE - técnica de oversampling
+
+--------------------------------------
+USAR O TEST INDICADO
+
+JUNTA TUDO EM UM SÓ, E SEPARA COM K FOLD 
+
+GET_DUMMIES (SEMPRE NA PERSPECTIVA DO TREINO E NUNCA DO TEST)
+
+
+-------------------------------------------
