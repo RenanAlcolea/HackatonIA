@@ -1,4 +1,3 @@
-
 ############################# Análise de Base de Comportamento Web com Inteligência Artifical - Classificador KNN ############################
 # ------------------------------------------------------
 # Renan Alcoléa de Souza        (FACENS)   RA: 142591 
@@ -21,7 +20,7 @@ k = input('Digite o valor de k desejado: ')
 k = int(k)
 
 # Carregando na variável df (dataframe) o arquivo CSV KDDTrain
-df_train = pd.read_csv("KDDTrain+.csv", names=[
+df = pd.read_csv("KDDTrain+.csv", names=[
     'duration', 'protocol_type', 'service', 'flag', 'src_bytes', 'dst_bytes', 'land',
     'wrong_fragment', 'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised',
     'root_shell', 'su_attempted', 'num_root', 'num_file_creations', 'num_shells',
@@ -34,35 +33,43 @@ df_train = pd.read_csv("KDDTrain+.csv", names=[
     'label', 'difficulty_level'
 ])
 
-df_test = pd.read_csv("KDDTest+.csv", names=[
-    'duration', 'protocol_type', 'service', 'flag', 'src_bytes', 'dst_bytes', 'land',
-    'wrong_fragment', 'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised',
-    'root_shell', 'su_attempted', 'num_root', 'num_file_creations', 'num_shells',
-    'num_access_files', 'num_outbound_cmds', 'is_host_login', 'is_guest_login', 'count',
-    'srv_count', 'serror_rate', 'srv_serror_rate', 'rerror_rate', 'srv_rerror_rate',
-    'same_srv_rate', 'diff_srv_rate', 'srv_diff_host_rate', 'dst_host_count',
-    'dst_host_srv_count', 'dst_host_same_srv_rate', 'dst_host_diff_srv_rate',
-    'dst_host_same_src_port_rate', 'dst_host_srv_diff_host_rate', 'dst_host_serror_rate',
-    'dst_host_srv_serror_rate', 'dst_host_rerror_rate', 'dst_host_srv_rerror_rate',
-    'label', 'difficulty_level'
-])
 
-# Transformando em informação númerica os atributos do tipo object (texto)
-df_dummy = pd.get_dummies(df_train)
+# Cabecalho com a pré apresentação dos dados (apenas os 5 primeiros dados)
+#print(df.head())
 
-# Passando a variável X a parte referente ao teste
-x_train = np.array(df_dummy)
+# Informações básicas sobre o dataframe como Número totais de coluna, bem como seus tipos e um resumo de quantidade por Tipos
+#print(df.info())
+
+# Breve descrição de algumas estatística dos atributos que possuem valor numérico
+#print(df.describe())
+
+# Breve descrição dos atributos do tipo object (string)
+#print(df.describe(include=['object']))
+
+#########################################################################
 
 # Definindo a classe que será verificada
-y_train = np.array(df_train['label'])
+y = np.array(df['label'])
 
 # Excluindo o atributo "Class" que contem o resultado do Dataframe original uma vez que já obtivemos a copia na variável Y
-#df.drop(['label'],axis=1,inplace=True)
+df.drop(['label'],axis=1,inplace=True)
+
+# Transformando em informação númerica os atributos do tipo object (texto)
+df_dummy = pd.get_dummies(df)
+
+# Passando a variável X a parte referente ao teste
+x = np.array(df_dummy)
+
+
+#x = pd.DataFrame(x)
+#print(x.head())
 
 
 ###############################################################################################################
 def masstest(k,x,y):   
             
+    x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size= 0.2, random_state=0)       
+    
     #Normalização dos atributos para que obtenham o mesmo peso.
     sc_x = StandardScaler()
     x_train = sc_x.fit_transform(x_train)
@@ -107,9 +114,3 @@ sample = np.array([0.8261,0.6742,300.0935,0.7273,0.0791,0.8793,0.9563,
 
 masstest(k,x,y)
 #predicao(k,sample)
-
-
-
-
-
-
