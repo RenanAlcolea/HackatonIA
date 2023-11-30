@@ -1,0 +1,66 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+########### Análise Dataframe Treino ###########
+
+def analysis_train():
+    df_train = pd.read_csv("NSL-KDD/KDDTrain+.csv", names=[
+        'duration', 'protocol_type', 'service', 'flag', 'src_bytes', 'dst_bytes', 'land',
+        'wrong_fragment', 'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised',
+        'root_shell', 'su_attempted', 'num_root', 'num_file_creations', 'num_shells',
+        'num_access_files', 'num_outbound_cmds', 'is_host_login', 'is_guest_login', 'count',
+        'srv_count', 'serror_rate', 'srv_serror_rate', 'rerror_rate', 'srv_rerror_rate',
+        'same_srv_rate', 'diff_srv_rate', 'srv_diff_host_rate', 'dst_host_count',
+        'dst_host_srv_count', 'dst_host_same_srv_rate', 'dst_host_diff_srv_rate',
+        'dst_host_same_src_port_rate', 'dst_host_srv_diff_host_rate', 'dst_host_serror_rate',
+        'dst_host_srv_serror_rate', 'dst_host_rerror_rate', 'dst_host_srv_rerror_rate',
+        'label', 'difficulty_level'])
+
+    
+    contagem_classes = df_train['label'].value_counts()
+    print(contagem_classes)
+    
+    contagem_classes.plot(kind='bar') 
+
+    
+    plt.title('Contagem de Classes')
+    plt.xlabel('Classe')
+    plt.ylabel('Quantidade')
+    plt.tight_layout()
+    
+    plt.show()
+
+
+########### Análise Dataframe Test ###########
+
+def analysis_test():
+    df_test = pd.read_csv("NSL-KDD/KDDTest+.csv", names=[
+        'duration', 'protocol_type', 'service', 'flag', 'src_bytes', 'dst_bytes', 'land',
+        'wrong_fragment', 'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised',
+        'root_shell', 'su_attempted', 'num_root', 'num_file_creations', 'num_shells',
+        'num_access_files', 'num_outbound_cmds', 'is_host_login', 'is_guest_login', 'count',
+        'srv_count', 'serror_rate', 'srv_serror_rate', 'rerror_rate', 'srv_rerror_rate',
+        'same_srv_rate', 'diff_srv_rate', 'srv_diff_host_rate', 'dst_host_count',
+        'dst_host_srv_count', 'dst_host_same_srv_rate', 'dst_host_diff_srv_rate',
+        'dst_host_same_src_port_rate', 'dst_host_srv_diff_host_rate', 'dst_host_serror_rate',
+        'dst_host_srv_serror_rate', 'dst_host_rerror_rate', 'dst_host_srv_rerror_rate',
+        'label', 'difficulty_level'])
+   
+    contagem_classes = df_test['label'].value_counts()
+    print(contagem_classes)
+    
+    contagem_classes.plot(kind='bar')    
+    
+    plt.title('Contagem de Classes')
+    plt.xlabel('Classe')
+    plt.ylabel('Quantidade')
+    plt.tight_layout()
+    
+    plt.show()
+
+#analysis_train()
+analysis_test()
+
+
+
