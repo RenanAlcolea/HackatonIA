@@ -1,39 +1,122 @@
-from Dataset_Load import carregar_dados,preparar_dados,get_sample
-from KNN import accuracyKNN, plot_K_Accuracy, plot_KNN_F1_score, confusion_MatrixKNN, predictKNN
-from LogisticRegression import accuracyLR,plot_LR_F1_score,predictLR
-from SVM import accuracySVM,predictSVM
-from RandomForest import accuracyRF,predictRF
+from DatasetProcess import DatasetProcess
+from LogProcess import logsVPC
+from KNN import accuracyKNN,F1ScoreKNN,recallKNN,precisionKNN,confusion_matrixKNN,predictKNN
+from LogisticRegression import accuracyLR,F1ScoreLR,recallLR,precisionLR,confusion_matrixLR,predictLR
+from SVM import accuracySVM,F1ScoreSVM,recallSVM,precisionSVM,confusionMatrixSVM,predictSVM
+from RandomForest import accuracyRF, F1ScoreRF,recallRF,precisionRF,confusion_matrixRF,predictRF
 
-def main():
+def main():    
     
-    k = int(input('Digite o valor de k desejado: '))
-
-    # Carregando os dados
-    df_train, df_test = carregar_dados()
-
-    # Preparando os dados
-    x_train, x_test, y_train, y_test = preparar_dados(df_train, df_test)
-
+    print('[1] - KNN\n[2] - Logistic Regression\n[3] - SVM\n[4] - Random Forest')   
+    opt = int(input('Digite o Classificador que deseja acessar: '))
+    
     #KNN
-    accuracyKNN(k, x_train, x_test, y_train, y_test)
-    plot_K_Accuracy(range(1, k+1), x_train, y_train, x_test, y_test)
-    #plot_KNN_F1_score(range(1, k+1), x_train, y_train, x_test, y_test)
-    #confusion_MatrixKNN(k, x_train, x_test, y_train, y_test)
-    #predict(k, get_sample(), x_train, x_test, y_train, y_test)
+    if(opt == 1):
+        k = int(input('Digite o valor de k desejado: '))
+        print('\n[1] - Acurácia\n[2] - F1-Score\n[3] - Recall\n[4] - Precisão\n[5] - Matrix de Confusão\n[6] - Predição') 
+        alg = int(input('Digite o algoritmo que deseja processar: '))
+        if(alg == 1):  
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            accuracyKNN(k, x_train, x_test, y_train, y_test)            
+        elif(alg == 2):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            F1ScoreKNN(range(1, k+1), x_train, y_train, x_test, y_test)
+        elif(alg == 3):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            recallKNN(k, x_train, x_test, y_train, y_test)
+        elif(alg == 4):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            precisionKNN(k, x_train, x_test, y_train, y_test)
+        elif(alg == 5):
+            x_train, x_test, y_train, y_test = lDatasetProcess()
+            confusion_matrixKNN(k, x_train, x_test, y_train, y_test)
+        elif(alg == 6):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            samples = logsVPC()
+            predictKNN(k, samples, x_train, y_train)
+        else:
+            print('Opção Inválida, reinicie a aplicação.')        
 
     #LogisticRegression
-    #accuracyLR(x_train, x_test, y_train, y_test)
-    #plot_LR_F1_score(x_train, x_test, y_train, y_test)
-    #predictLR(get_sample(), x_train,y_train)
+    if(opt == 2):
+        print('\n[1] - Acurácia\n[2] - F1-Score\n[3] - Recall\n[4] - Precisão\n[5] - Matrix de Confusão\n[6] - Predição') 
+        alg = int(input('Digite o algoritmo que deseja processar: '))
+        if(alg == 1):  
+            x_train, x_test, y_train, y_test = DatasetProcess()        
+            accuracyLR(x_train, x_test, y_train, y_test)
+        elif(alg == 2):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            F1ScoreLR(x_train, x_test, y_train, y_test)            
+        elif(alg == 3):
+            x_train, x_test, y_train, y_test = DatasetProcess()           
+            recallLR(x_train, x_test, y_train, y_test)
+        elif(alg == 4):
+            x_train, x_test, y_train, y_test = DatasetProcess()           
+            precisionLR(x_train, x_test, y_train, y_test)
+        elif(alg == 5):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            confusion_matrixLR(x_train, x_test, y_train, y_test)
+        elif(alg == 6):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            samples = logsVPC()
+            predictLR(samples, x_train,y_train)            
+        else:
+            print('Opção Inválida, reinicie a aplicação.')
+            
 
     #SVM
-    #accuracySVM(x_train, x_test, y_train, y_test)
-    #predictSVM(get_sample(), x_train, y_train)
+    if(opt == 3):
+        print('\n[1] - Acurácia\n[2] - F1-Score\n[3] - Recall\n[4] - Precisão\n[5] - Matrix de Confusão\n[6] - Predição') 
+        alg = int(input('Digite o algoritmo que deseja processar: '))
+        if(alg == 1):  
+            x_train, x_test, y_train, y_test = DatasetProcess()      
+            accuracySVM(x_train, x_test, y_train, y_test)
+        elif(alg == 2):
+            x_train, x_test, y_train, y_test = DatasetProcess()          
+            F1ScoreSVM(x_train, x_test, y_train, y_test)
+        elif(alg == 3):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            recallSVM(x_train, x_test, y_train, y_test)
+        elif(alg == 4):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            precisionSVM(x_train, x_test, y_train, y_test)
+        elif(alg == 5):
+            x_train, x_test, y_train, y_test = DatasetProcess()           
+            confusionMatrixSVM(x_train, x_test, y_train, y_test)
+        elif(alg == 6):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            samples = logsVPC()
+            predictSVM(samples, x_train, y_train)
+        else:
+            print('Opção Inválida, reinicie a aplicação.')
 
     #RandomForest
-    #accuracyRF(x_train, x_test, y_train, y_test)
-    #predictRF(get_sample(), x_train, y_train)
-    
+    if(opt == 4):
+        print('\n[1] - Acurácia\n[2] - F1-Score\n[3] - Recall\n[4] - Precisão\n[5] - Matrix de Confusão\n[6] - Predição') 
+        alg = int(input('Digite o algoritmo que deseja processar: '))
+        if(alg == 1):  
+            x_train, x_test, y_train, y_test = DatasetProcess()      
+            accuracyRF(x_train, x_test, y_train, y_test)
+        elif(alg == 2):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            F1ScoreRF(x_train, x_test, y_train, y_test)
+        elif(alg == 3):
+            x_train, x_test, y_train, y_test = DatasetProcess()           
+            recallRF(x_train, x_test, y_train, y_test)
+        elif(alg == 4):
+            x_train, x_test, y_train, y_test = DatasetProcess()                      
+            precisionRF(x_train, x_test, y_train, y_test)
+        elif(alg == 5):
+            x_train, x_test, y_train, y_test = DatasetProcess()           
+            confusion_matrixRF(x_train, x_test, y_train, y_test)
+        elif(alg == 6):
+            x_train, x_test, y_train, y_test = DatasetProcess()
+            samples = logsVPC()
+            predictRF(samples, x_train, y_train)
+            
+            
+        else:
+            print('Opção Inválida, reinicie a aplicação.')            
 
 if __name__ == "__main__":
     main()

@@ -10,21 +10,17 @@ try {
     exit
 }
 
-# Itera sobre cada stream e baixa os logs
 foreach ($stream in $streams) {
     Write-Host "Baixando logs de $stream"
-    $safeStreamName = $stream -replace '[\\/:*?"<>|]', '_'
-    $filePath = "C:\Users\RenanAlcolea\OneDrive\Desktop\Oi\Logs CloudWatch\Logs_$safeStreamName.csv"
+    $filePath = "C:\Users\RenanAlcolea\OneDrive\Desktop\HackatonIA\Logs\Logs_$stream.csv"
     try {
         $logEvents = aws logs get-log-events --log-group-name $GroupName --log-stream-name $stream --output json | ConvertFrom-Json
         $formattedEvents = $logEvents.events | ForEach-Object {
             $timestamp = [datetimeoffset]::FromUnixTimeMilliseconds($_.timestamp).ToLocalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffK')
-            [PSCustomObject]@{
-                Timestamp = $timestamp
-                Message = $_.message
-            }
+            $concatenatedString = "$timestamp $($_.message)"
+            $concatenatedString.Replace(" ", ",")
         }
-        $formattedEvents | Export-Csv -Path $filePath -NoTypeInformation
+        $formattedEvents | Out-File -FilePath $filePath -Encoding UTF8
     } catch {
         Write-Host "Erro ao baixar logs do stream ${stream}: $_"
     }
