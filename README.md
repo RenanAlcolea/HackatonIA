@@ -21,10 +21,10 @@ No processo de treinamento do modelo de Inteligência Artificial, foi conduzida 
 
 Os resultados indicaram que um valor de K igual a 1 demonstrou ser o mais eficiente, proporcionando maior precisão na classificação dos dados de log da VPC. Esse achado foi fundamental para a progressão do modelo, levando à inclusão do KNN com K = 1 na tabela comparativa de desempenho juntamente com outros algoritmos de classificação. A seleção desse valor de K se destacou pela sua capacidade de manejar eficientemente as complexidades e particularidades dos dados de VPC analisados.
 
-### Figura: Comparativo de Desempenho de K no KNN
+### Figura 01: Comparativo de Desempenho de K no KNN
 ![image](https://github.com/RenanAlcolea/HackatonIA/assets/19910963/6e64cda1-3f46-4dd4-91d6-841bc15ee6a3)
 
-### Figura: Comparativo de Desempenho dos Algoritmos de Classificação
+### Figura 02: Comparativo de Desempenho dos Algoritmos de Classificação
 ![image](https://github.com/RenanAlcolea/HackatonIA/assets/19910963/28053cac-18f0-48ed-a090-331785571df9)
 
 ## Base de Dados Utilizada
@@ -34,7 +34,7 @@ Este projeto utilizou a base de dados CIDDS-001, fornecida pela Universidade de 
 - `CIDDS-001-external-week3.csv`: Representando os dados externos da semana mais movimentada.
 - `CIDDS-001-internal-week1.csv`: Representando os dados internos da semana mais movimentada.
 
-Esses arquivos foram escolhidos para fornecer uma visão abrangente tanto das atividades internas quanto externas, capturando uma variedade de padrões e anomalias relevantes para a segurança de redes VPC.[
+Esses arquivos foram escolhidos para fornecer uma visão abrangente tanto das atividades internas quanto externas, capturando uma variedade de padrões e anomalias relevantes para a segurança de redes VPC.
 
 ## Tecnologias Utilizadas
 
@@ -47,14 +47,13 @@ Esses arquivos foram escolhidos para fornecer uma visão abrangente tanto das at
 1. Clone o repositório:
 git clone https://github.com/RenanAlcolea/HackatonIA.git
 
-3. Navegue até a pasta do projeto e instale as dependências:
+2. Navegue até a pasta do projeto e instale as dependências:
 cd HackatonIA
-
 pip install -r requirements.txt
 
-5. Configure suas credenciais AWS e variáveis de ambiente.
+3. Configure suas credenciais AWS e variáveis de ambiente.
 
-6. Execute o aplicativo:
+4. Execute o aplicativo:
 python main.py
 
 ## Contribuições
