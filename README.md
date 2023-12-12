@@ -18,6 +18,15 @@ O modelo de Inteligência Artificial descrito neste documento foi treinado utili
 
 A eficácia de cada um destes algoritmos foi avaliada comparativamente, e os resultados são essenciais para entender a performance do modelo. Conforme ilustrado na figura abaixo, o algoritmo Random Forest apresentou o melhor desempenho. Sua capacidade de gerar um modelo robusto e preciso, especialmente em grandes conjuntos de dados com múltiplas variáveis de entrada, é notável.
 
+### Análise de Valores de K no KNN
+
+No processo de treinamento do modelo de Inteligência Artificial, foi conduzida uma análise para determinar o valor ótimo de K no algoritmo K-Nearest Neighbors (KNN). Esta análise consistiu na comparação do desempenho do modelo com diferentes valores de K, variando de 1 a 10.
+
+Os resultados indicaram que um valor de K igual a 1 demonstrou ser o mais eficiente, proporcionando maior precisão na classificação dos dados de log da VPC. Esse achado foi fundamental para a progressão do modelo, levando à inclusão do KNN com K = 1 na tabela comparativa de desempenho juntamente com outros algoritmos de classificação. A seleção desse valor de K se destacou pela sua capacidade de manejar eficientemente as complexidades e particularidades dos dados de VPC analisados.
+
+![image](https://github.com/RenanAlcolea/HackatonIA/assets/19910963/6e64cda1-3f46-4dd4-91d6-841bc15ee6a3)
+
+
 ### Figura: Comparativo de Desempenho dos Algoritmos de Classificação
 ![image](https://github.com/RenanAlcolea/HackatonIA/assets/19910963/28053cac-18f0-48ed-a090-331785571df9)
 
@@ -52,5 +61,5 @@ Este projeto está sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes
 ## Contato
 
 - Nome do Desenvolvedor: Renan Alcoléa
-- LinkedIn: https://www.linkedin.com/in/renan-alcolea/)https://www.linkedin.com/in/renan-alcolea/
+- LinkedIn: https://www.linkedin.com/in/renan-alcolea/
 
